@@ -6,7 +6,7 @@ const hbs = require("hbs");
 const geocode = require("./utils/geocode.js")
 const forecast = require("./utils/forecast.js")
 
-
+const port = process.env.PORT || 3000
 //Paths y views location
 
 const partialsPath = path.join(__dirname, "../templates/partials");
@@ -49,7 +49,7 @@ app.get("/weather", (req, res) => {
 		})
 	}
 
-	geocode(req.query.address, (error, { location }={}) => {
+	geocode(req.query.address, (error, { location } = {}) => {
 
 		if (error) {
 			return res.send({
@@ -67,7 +67,7 @@ app.get("/weather", (req, res) => {
 			res.send({
 				location: location,
 				forecast: forecastData,
-				address : req.query.address
+				address: req.query.address
 			})
 		})
 	})
@@ -97,6 +97,6 @@ app.get("*", (req, res) => {
 	})
 })
 //Puerto que se escucha y callback que se ejecuta cuando el server está corriendo
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log("Server is running on port 300")
 })
