@@ -23,10 +23,10 @@ weatherForm.addEventListener("submit", (e) => {
 	fetch(`/weather?address=${location}`).then((response) => {
 		response.json().then((data) => {
 			if (data.error) {
-				parError.insertAdjacentText("afterbegin", data.error)
+				parError.insertAdjacentHTML("afterbegin", `<p>${data.error}</p>`)
 			} else {
-				parOk.insertAdjacentText("afterbegin", data.location)
-				parOk.insertAdjacentText("afterbegin", data.forecast)
+				parOk.insertAdjacentHTML("afterbegin", `<p>${data.location}</p>`)
+				parOk.insertAdjacentHTML("afterbegin", `<p>${data.forecast}</p>`)
 			}
 		})
 	})
